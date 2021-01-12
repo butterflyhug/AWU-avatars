@@ -1,0 +1,1 @@
+# AWU avatar generator

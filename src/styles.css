@@ -1,0 +1,107 @@
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: system, sans-serif;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+#image-frame {
+  height: 400px;
+  width: 400px;
+  position: relative;
+  margin: 40px;
+}
+
+#image-frame * {
+  position: absolute;
+  width: 400px;
+  top: 0;
+  left: 0;
+}
+
+canvas {
+  z-index: 0;
+}
+
+img {
+  z-index: 1;
+}
+
+input[type="file"] {
+  font-family: inherit;
+  height: 100%;
+  z-index: 10;
+}
+input[type="file"]::-webkit-file-upload-button {
+  opacity: 0;
+}
+input[type="file"]::file-selector-button {
+  opacity: 0;
+}
+
+input[type="file"]:valid {
+  display: none;
+}
+input[type="file"]:invalid {
+  background: #eee;
+  color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+input[type="file"]:invalid::before {
+  color: black;
+  content: '📷 Choose your photo 📷';
+  display: block;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 200px;
+  transform: translateY(-100%);
+}
+input[type="file"]:invalid::after {
+  color: black;
+  content: '(does not upload! image processing happens in your browser)';
+  display: block;
+  text-align: center;
+  margin: 0;
+}
+
+a#export {
+  display: none;
+}
+a#export:link,
+a.set-border {
+  display: inline-block;
+  background: #eee;
+  border: 1px solid #888;
+  border-radius: 3px;
+  color: red;
+  font-weight: bold;
+  margin: 0.25em 1em;
+  padding: 0.25em 1em;
+  text-decoration: none;
+}
+a.set-border {
+  background: red;
+  border-color: black;
+}
+a.set-border.black {
+  color: black;
+}
+a.set-border.white {
+  color: white;
+}
+a#export:hover,
+a#export:focus,
+a.set-border:hover,
+a.set-border:focus {
+  text-decoration: underline;
+}

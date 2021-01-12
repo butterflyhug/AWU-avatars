@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-zoom=1" />
+<link rel="stylesheet" href="styles.css" />
+<title>AWU profile image generator</title>
+
+<h1>AWU profile image generator</h1>
+<p>Choose an image to add an AWU profile frame to it!</p>
+<div>
+  Frame color:
+  <a href="javascript:setBorderStyle('black')" class="set-border black">black</a>
+  <a href="javascript:setBorderStyle('white')" class="set-border white">white</a>
+</div>
+
+<div id="image-frame">
+  <canvas></canvas>
+  <input type="file" required />
+</div>
+
+<a id="export" download="avatar.png">Save</a>
+
+<script src="script.js"></script>
