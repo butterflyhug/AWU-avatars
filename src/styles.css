@@ -58,7 +58,7 @@ input[type="file"]:invalid {
 }
 input[type="file"]:invalid::before {
   color: black;
-  content: '📷 Choose your photo 📷';
+  content: '📷 Click to choose your photo 📷';
   display: block;
   font-size: 2em;
   font-weight: bold;

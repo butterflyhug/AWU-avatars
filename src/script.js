@@ -45,6 +45,6 @@ function readImage() {
 document.querySelector("input[type='file']")
     .addEventListener("change", readImage);
 
-function setBorderStyle(color) {
-  frameImage.src = `frame-${color}.png`;
+function setBorder(filename) {
+  frameImage.src = filename;
 }
