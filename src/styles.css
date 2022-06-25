@@ -99,6 +99,9 @@ a.set-border.black {
 a.set-border.white {
   color: white;
 }
+a.set-border.trans {
+  background: linear-gradient(to bottom, #5bcffa 0%, #5bcffa 49%, #f5abb9 51%, #f5abb9 100%);
+}
 a.set-border.rainbow {
   background: black;
 }
