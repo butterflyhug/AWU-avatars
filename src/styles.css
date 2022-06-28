@@ -25,6 +25,8 @@ input[type="file"] {
 canvas {
   width: 100%;
   max-width: 400px;
+  background-color: lightgray;
+  border-radius: 1em;
 }
 
 a#export {
