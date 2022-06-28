@@ -30,15 +30,27 @@ function drawCanvas() {
   const innerWidth  = (size / sizeUnclamped) * width;
   const innerHeight = (size / sizeUnclamped) * height;
   const center = size / 2;
-  
-  context.arc(size/2, size/2, size/2, 0, 2 * Math.PI);
-  context.clip();
 
-  context.fillStyle = frameImageBGColor;
-  context.fillRect(0, 0, size, size);
-  context.drawImage(uploadedImage,
-    center - innerWidth / 2, center - innerHeight / 2,
-    innerWidth, innerHeight);
+  // Clip a few extra pixels off the edge so the uploaded image never bleeds
+  // through at the borders of the frame
+  const kExtraClip = 2;
+  context.arc(size/2, size/2, size/2 - kExtraClip, 0, 2 * Math.PI);
+  {
+    context.save();
+    {
+      context.clip();
+
+      context.fillStyle = frameImageBGColor;
+      context.fillRect(0, 0, size, size);
+      context.imageSmoothingQuality = 'high';
+      context.drawImage(uploadedImage,
+        center - innerWidth / 2, center - innerHeight / 2,
+        innerWidth, innerHeight);
+    }
+    context.restore();
+  }
+  // Draw the frame without clipping. Generally, the frame should have its own
+  // border transparency.
   context.drawImage(frameImage, 0, 0, size, size);
 
   const canvas = document.querySelector('canvas');
