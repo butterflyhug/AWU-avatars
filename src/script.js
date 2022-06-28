@@ -3,6 +3,7 @@ const context = document.querySelector("canvas").getContext("2d");
 const frameImage = new Image();
 frameImage.src = 'frame-white.png';
 const uploadedImage = new Image();
+uploadedImage.src = 'placeholder.svg';
 
 function drawCanvas() {
   if (!uploadedImage.src) return;
