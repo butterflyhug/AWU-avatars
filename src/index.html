@@ -8,18 +8,20 @@
 <p>Choose an image to add an AWU profile frame to it!</p>
 <div>
   Frame style:
-  <a href="javascript:setBorder('frame-black.png')" class="set-border black">black</a>
-  <a href="javascript:setBorder('frame-highdetail-black.svg')" class="set-border black">black (high detail)</a>
-  <a href="javascript:setBorder('frame-white.png')" class="set-border white">white</a>
-  <a href="javascript:setBorder('frame-highdetail-white.svg')" class="set-border white">white (high detail)</a>
-  <a href="javascript:setBorder('frame-pride.png')" class="set-border rainbow"><span>pride</span></a>
-  <a href="javascript:setBorder('frame-trans.png')" class="set-border trans white"><span>trans</span></a>
-  <a href="javascript:setBorder('frame-caste-black.png')" class="set-border black">caste equity</a>
+  <a href="javascript:setBorder('red', 'frame-black.png')" class="set-border black">black</a>
+  <a href="javascript:setBorder('red', 'frame-highdetail-black.svg')" class="set-border black">black (high detail)</a>
+  <a href="javascript:setBorder('red', 'frame-white.png')" class="set-border white">white</a>
+  <a href="javascript:setBorder('red', 'frame-highdetail-white.svg')" class="set-border white">white (high detail)</a>
+  <a href="javascript:setBorder('red', 'frame-pride.png')" class="set-border rainbow"><span>pride</span></a>
+  <a href="javascript:setBorder('#f5abb9', 'frame-trans.png')" class="set-border trans white"><span>trans</span></a>
+  <a href="javascript:setBorder('red', 'frame-caste-black.png')" class="set-border black">caste equity</a>
 </div>
 
 <h2 id="instructions">📷 Choose your photo 📷</h2>
 
 <input type="file" required />
+
+<input id="zoomInput" type="range" min="0.5" max="1.0" step="0.01" value="0.7"/>
 <canvas width=400 height=400></canvas>
 
 <p><a id="export" download="avatar.png">Save</a></p>

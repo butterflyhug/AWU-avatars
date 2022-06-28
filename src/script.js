@@ -1,7 +1,9 @@
 const context = document.querySelector("canvas").getContext("2d");
+const zoomInput = document.querySelector("#zoomInput");
 
 const frameImage = new Image();
 frameImage.src = 'frame-white.png';
+let frameImageBGColor = 'red';
 const uploadedImage = new Image();
 uploadedImage.src = 'placeholder.svg';
 
@@ -13,30 +15,43 @@ function drawCanvas() {
   context.beginPath();
 
   const {width, height} = uploadedImage;
-  const size = Math.max(width, height);
-  const heightPadding = size - height;
-  const widthPadding = size - width;
+  const maxDimension = Math.max(width, height);
+
+  const zoom = zoomInput.value;
+  const sizeUnclamped = Math.floor(maxDimension / zoom / 2) * 2;
+  // Try to set things up so the image in the middle retains its original
+  // resolution. But don't let the frame resolution get too low, or the final
+  // resolution get too large. (Firefox in particular doesn't downscale well,
+  // so results are poorer.)
+  const size = Math.min(Math.max(250, sizeUnclamped), 800);
   context.canvas.width = size;
   context.canvas.height = size;
+
+  const innerWidth  = (size / sizeUnclamped) * width;
+  const innerHeight = (size / sizeUnclamped) * height;
+  const center = size / 2;
   
   context.arc(size/2, size/2, size/2, 0, 2 * Math.PI);
   context.clip();
-  
-  context.fillStyle = 'white';
+
+  context.fillStyle = frameImageBGColor;
   context.fillRect(0, 0, size, size);
-  context.drawImage(uploadedImage, (size-width)/2, (size-height)/2);
+  context.drawImage(uploadedImage,
+    center - innerWidth / 2, center - innerHeight / 2,
+    innerWidth, innerHeight);
   context.drawImage(frameImage, 0, 0, size, size);
-  
+
   const canvas = document.querySelector('canvas');
   const exportLink = document.querySelector('#export');
   exportLink.href = canvas.toDataURL('image/png');
 }
 frameImage.addEventListener("load", drawCanvas);
 uploadedImage.addEventListener("load", drawCanvas);
+zoomInput.addEventListener("input", drawCanvas);
 
 function readImage() {
   if (!this.files || !this.files[0]) return;
-  
+
   const reader = new FileReader();
   reader.addEventListener("load", (event) => {
     uploadedImage.src = event.target.result;
@@ -46,6 +61,7 @@ function readImage() {
 document.querySelector("input[type='file']")
     .addEventListener("change", readImage);
 
-function setBorder(filename) {
+function setBorder(bgColor, filename) {
   frameImage.src = filename;
+  frameImageBGColor = bgColor;
 }
