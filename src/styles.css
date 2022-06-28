@@ -12,66 +12,19 @@ h1 {
   padding: 0;
 }
 
-#image-frame {
-  height: 400px;
-  width: 400px;
-  position: relative;
-  margin: 40px;
+#instructions {
+  margin-bottom: 0;
 }
-
-#image-frame * {
-  position: absolute;
-  width: 400px;
-  top: 0;
-  left: 0;
-}
-
-canvas {
-  z-index: 0;
-}
-
-img {
-  z-index: 1;
-}
-
 input[type="file"] {
-  font-family: inherit;
-  height: 100%;
-  z-index: 10;
-}
-input[type="file"]::-webkit-file-upload-button {
-  opacity: 0;
-}
-input[type="file"]::file-selector-button {
-  opacity: 0;
-}
-
-input[type="file"]:valid {
-  display: none;
-}
-input[type="file"]:invalid {
-  background: #eee;
-  color: transparent;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-input[type="file"]:invalid::before {
-  color: black;
-  content: '📷 Click to choose your photo 📷';
-  display: block;
-  font-size: 2em;
-  font-weight: bold;
+  max-width: 100%;
+  margin: 0.5em;
   text-align: center;
-  margin-top: 200px;
-  transform: translateY(-100%);
+  font-size: 110%;
+  border: thin solid gray;
 }
-input[type="file"]:invalid::after {
-  color: black;
-  content: '(does not upload! image processing happens in your browser)';
-  display: block;
-  text-align: center;
-  margin: 0;
+canvas {
+  width: 100%;
+  max-width: 400px;
 }
 
 a#export {
