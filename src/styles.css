@@ -25,8 +25,11 @@ input[type="file"] {
 canvas {
   width: 100%;
   max-width: 400px;
-  background-color: lightgray;
-  border-radius: 1em;
+  /* Fallback background color */
+  background-color: #aaa;
+  /* Checkerboard pattern with a size of 5x5% repeating = 20x20 repeats */
+  background: repeating-conic-gradient(#999 0deg 90deg, #bbb 90deg 180deg) center / 5% 5%;
+  border-radius: 2.5%;
 }
 
 a#export {
