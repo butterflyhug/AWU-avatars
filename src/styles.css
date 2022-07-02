@@ -63,6 +63,7 @@ a.set-border.rainbow {
 a.set-border.rainbow > span {
   background: linear-gradient(to right, red 0%, #ff0 17%, lime 33%, cyan 50%, #f0f 83%, red 100%);
   background-clip: text;
+  -webkit-background-clip: text; /* necessary for Chrome */
   -webkit-text-fill-color: transparent;  /* works with Firefox too! */
 }
 a#export:hover,
