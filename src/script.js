@@ -1,7 +1,13 @@
 const context = document.querySelector("canvas").getContext("2d");
 
 const frameImage = new Image();
+// TODO: The initial values for frameImage.src and frameInnerToOuterRatio
+// are duplicated between here and index.html. Find a way to avoid that.
 frameImage.src = 'frame-white.png';
+// Ratio between the inner size of the frame (where the uploaded image gets
+// drawn) to the outer size of the frame.
+let frameInnerToOuterRatio = 0.69;
+
 const uploadedImage = new Image();
 uploadedImage.src = 'placeholder.svg';
 
@@ -13,9 +19,9 @@ function drawCanvas() {
   context.beginPath();
 
   const {width, height} = uploadedImage;
-  const maxDimension = Math.max(width, height);
+  const minDimension = Math.min(width, height);
 
-  const sizeUnclamped = Math.floor(maxDimension / 2) * 2;
+  const sizeUnclamped = Math.floor(minDimension / frameInnerToOuterRatio / 2) * 2;
   // Try to set things up so the image in the middle retains its original
   // resolution. But don't let the frame resolution get too low, or the final
   // resolution get too large. (Firefox in particular doesn't downscale well,
@@ -30,11 +36,11 @@ function drawCanvas() {
 
   // Clip a few extra pixels off the edge so the uploaded image never bleeds
   // through at the borders of the frame
-  const kExtraClip = 2;
-  context.arc(size/2, size/2, size/2 - kExtraClip, 0, 2 * Math.PI);
   {
     context.save();
     {
+      const kExtraClip = 2;
+      context.arc(size/2, size/2, size/2 - kExtraClip, 0, 2 * Math.PI);
       context.clip();
 
       context.imageSmoothingQuality = 'high';
@@ -67,6 +73,7 @@ function readImage() {
 document.querySelector("input[type='file']")
     .addEventListener("change", readImage);
 
-function setBorder(filename) {
+function setBorder(innerToOuterRatio, filename) {
   frameImage.src = filename;
+  frameInnerToOuterRatio = innerToOuterRatio;
 }
