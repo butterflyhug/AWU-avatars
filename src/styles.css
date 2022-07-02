@@ -16,11 +16,14 @@ h1 {
   margin-bottom: 0;
 }
 input[type="file"] {
-  max-width: 100%;
-  margin: 0.5em;
-  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+  margin: 0.5em 0;
   font-size: 110%;
-  border: thin solid gray;
+  background: lightgray;
+  border-radius: 10px;
+  padding: 5px;
 }
 canvas {
   width: 100%;
@@ -29,14 +32,10 @@ canvas {
   background-color: #aaa;
   /* Checkerboard pattern with a size of 5x5% repeating = 20x20 repeats */
   background: repeating-conic-gradient(#999 0deg 90deg, #bbb 90deg 180deg) center / 5% 5%;
-  border-radius: 2.5%;
+  border-radius: 10px;
 }
 
-a#export {
-  display: none;
-}
-a#export:link,
-a.set-border {
+a.button {
   display: inline-block;
   background: #eee;
   border: 1px solid #888;
@@ -47,31 +46,30 @@ a.set-border {
   padding: 0.25em 1em;
   text-decoration: none;
 }
-a.set-border {
+a.button:hover,
+a.button:focus {
+  text-decoration: underline;
+}
+
+#frame-list a.button {
   background: red;
   border-color: black;
 }
-a.set-border.black {
+#frame-list a.button.black {
   color: black;
 }
-a.set-border.white {
+#frame-list a.button.white {
   color: white;
 }
-a.set-border.trans {
+#frame-list a.button.trans {
   background: linear-gradient(to bottom, #5bcffa 0%, #5bcffa 49%, #f5abb9 51%, #f5abb9 100%);
 }
-a.set-border.rainbow {
+#frame-list a.button.rainbow {
   background: black;
 }
-a.set-border.rainbow > span {
+#frame-list a.button.rainbow > span {
   background: linear-gradient(to right, red 0%, #ff0 17%, lime 33%, cyan 50%, #f0f 83%, red 100%);
   background-clip: text;
   -webkit-background-clip: text; /* necessary for Chrome */
   -webkit-text-fill-color: transparent;  /* works with Firefox too! */
-}
-a#export:hover,
-a#export:focus,
-a.set-border:hover,
-a.set-border:focus {
-  text-decoration: underline;
 }
