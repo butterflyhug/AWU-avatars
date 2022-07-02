@@ -1,16 +1,5 @@
 const context = document.querySelector("canvas").getContext("2d");
 
-const frameImage = new Image();
-// TODO: The initial values for frameImage.src and frameInnerToOuterRatio
-// are duplicated between here and index.html. Find a way to avoid that.
-frameImage.src = 'frame-white.png';
-// Ratio between the inner size of the frame (where the uploaded image gets
-// drawn) to the outer size of the frame.
-let frameInnerToOuterRatio = 0.69;
-
-const uploadedImage = new Image();
-uploadedImage.src = 'placeholder.svg';
-
 function drawCanvas() {
   if (!uploadedImage.src) return;
 
@@ -58,8 +47,6 @@ function drawCanvas() {
   const exportLink = document.querySelector('#export');
   exportLink.href = canvas.toDataURL('image/png');
 }
-frameImage.addEventListener("load", drawCanvas);
-uploadedImage.addEventListener("load", drawCanvas);
 
 function readImage() {
   if (!this.files || !this.files[0]) return;
@@ -77,3 +64,17 @@ function setBorder(innerToOuterRatio, filename) {
   frameImage.src = filename;
   frameInnerToOuterRatio = innerToOuterRatio;
 }
+
+const uploadedImage = new Image();
+uploadedImage.src = 'placeholder.svg';
+uploadedImage.addEventListener("load", drawCanvas);
+
+const frameImage = new Image();
+frameImage.src = '';
+frameImage.addEventListener("load", drawCanvas);
+// Ratio between the inner size of the frame (where the uploaded image gets
+// drawn) to the outer size of the frame.
+let frameInnerToOuterRatio = 0;
+
+// Trigger the default frame to set the defaults for the above.
+document.querySelector('#frame-list-default').click();
