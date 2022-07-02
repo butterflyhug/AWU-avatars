@@ -51,7 +51,21 @@ a.button:focus {
   text-decoration: underline;
 }
 
+#frame-list {
+  width: 100%;
+  max-width: 800px;
+}
+/* The frame-sublist structure in HTML provides control over line-breaking in flexbox */
+.frame-sublist {
+  flex: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
 #frame-list a.button {
+  flex: auto;
+  text-align: center;
   background: red;
   border-color: black;
 }
