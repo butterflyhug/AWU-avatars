@@ -1,9 +1,10 @@
 body {
-  margin: 5vh 1em;
+  margin: 5vh 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   font-family: system, sans-serif;
 }
 
@@ -11,49 +12,59 @@ h1 {
   margin: 0;
   padding: 0;
 }
+p {
+  margin: 0.5rem 0; /* 8px 0 */
+}
 
-#instructions {
-  margin-bottom: 0;
+.instructions,
+canvas {
+  margin: 2rem 0 0.5rem; /* 32px 0 8px */
+}
+.small {
+  color: #444;
+  font-size: 0.75rem; /* 12px */
+  margin: 0.5rem 0; /* 8px 0 */
 }
 input[type="file"] {
   width: 100%;
-  max-width: 400px;
+  max-width: 32rem; /* 512px */
   box-sizing: border-box;
-  margin: 0.5em 0;
-  font-size: 110%;
+  font-size: 1.125rem; /* 18px */
   background: lightgray;
-  border-radius: 10px;
-  padding: 5px;
+  border-radius: 0.5rem; /* 8px */
+  padding: 0.25rem; /* 4px */
 }
 canvas {
-  width: 100%;
-  max-width: 400px;
+  max-width: min(32rem, 100%); /* 512px */
   /* Fallback background color */
   background-color: #aaa;
   /* Checkerboard pattern with a size of 5x5% repeating = 20x20 repeats */
   background: repeating-conic-gradient(#999 0deg 90deg, #bbb 90deg 180deg) center / 5% 5%;
-  border-radius: 10px;
+  border-radius: 0.5rem; /* 8px */
 }
 
 a.button {
   display: inline-block;
-  background: #eee;
-  border: 1px solid #888;
-  border-radius: 3px;
-  color: red;
+  background: #ed1c24;
+  border: 1px solid black;
+  border-radius: 0.25rem; /* 4px */
+  color: #ed1c24;
+  cursor: pointer;
   font-weight: bold;
-  margin: 0.25em 1em;
-  padding: 0.25em 1em;
+  margin: 0.25rem 1rem;  /* 4px 16px */
+  padding: 0.25rem 1rem; /* 4px 16px */
+  text-align: center;
   text-decoration: none;
 }
 a.button:hover,
-a.button:focus {
+a.button:focus,
+a.button.active {
   text-decoration: underline;
 }
 
 #frame-list {
   width: 100%;
-  max-width: 800px;
+  max-width: 50rem; /* 800px */
 }
 /* The frame-sublist structure in HTML provides control over line-breaking in flexbox */
 .frame-sublist {
@@ -65,25 +76,28 @@ a.button:focus {
 
 #frame-list a.button {
   flex: auto;
-  text-align: center;
-  background: red;
-  border-color: black;
 }
-#frame-list a.button.black {
+a.button.black {
   color: black;
 }
-#frame-list a.button.white {
+a.button.white,
+a.button.trans {
   color: white;
 }
-#frame-list a.button.trans {
+a.button.trans {
   background: linear-gradient(to bottom, #5bcffa 0%, #5bcffa 49%, #f5abb9 51%, #f5abb9 100%);
 }
-#frame-list a.button.rainbow {
+a.button.pride {
   background: black;
 }
-#frame-list a.button.rainbow > span {
+.rainbow-text {
   background: linear-gradient(to right, red 0%, #ff0 17%, lime 33%, cyan 50%, #f0f 83%, red 100%);
   background-clip: text;
   -webkit-background-clip: text; /* necessary for Chrome */
   -webkit-text-fill-color: transparent;  /* works with Firefox too! */
+}
+
+#export-link {
+  background: #f6f2ec;
+  border: 1px solid #888;
 }

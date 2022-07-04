@@ -5,33 +5,37 @@
 <title>AWU profile image generator</title>
 
 <h1>AWU profile image generator</h1>
-<p>Choose an image to add an AWU profile frame to it!</p>
+<p>
+  Choose an image to add an AWU profile frame to it!
+</p>
+
+<h2 class="instructions">🖼 Choose a frame 🖼</h2>
 <div id="frame-list" class="frame-sublist">
   <div class="frame-sublist">
     <div class="frame-sublist">
-      <a href="javascript:setBorder(0.69, 'frame-black.png')"            class="button black">black</a>
-      <a href="javascript:setBorder(0.67, 'frame-highdetail-black.svg')" class="button black">black (high detail)</a>
+      <a class="button black" onclick="setBorder(this)" data-visible-ratio="0.69" data-src="frame-black.png">simple black</a>
+      <a class="button black" onclick="setBorder(this)" data-visible-ratio="0.67" data-src="frame-highdetail-black.svg">detailed black</a>
     </div>
     <div class="frame-sublist">
-      <a href="javascript:setBorder(0.69, 'frame-white.png')"            class="button white" id="frame-list-default">white</a>
-      <a href="javascript:setBorder(0.67, 'frame-highdetail-white.svg')" class="button white">white (high detail)</a>
+      <a class="button white" onclick="setBorder(this)" data-visible-ratio="0.69" data-src="frame-white.png" id="frame-list-default">simple white</a>
+      <a class="button white" onclick="setBorder(this)" data-visible-ratio="0.67" data-src="frame-highdetail-white.svg">detailed white</a>
     </div>
   </div>
   <div class="frame-sublist">
-    <a href="javascript:setBorder(0.68, 'frame-pride.png')"            class="button rainbow"><span>pride</span></a>
-    <a href="javascript:setBorder(0.69, 'frame-trans.png')"            class="button trans white"><span>trans</span></a>
-    <a href="javascript:setBorder(0.68, 'frame-caste-black.png')"      class="button black">caste equity</a>
+    <a class="button pride" onclick="setBorder(this)" data-visible-ratio="0.68" data-src="frame-pride.png"><span class="rainbow-text">pride</span></a>
+    <a class="button trans" onclick="setBorder(this)" data-visible-ratio="0.69" data-src="frame-trans.png">trans</a>
+    <a class="button black" onclick="setBorder(this)" data-visible-ratio="0.68" data-src="frame-caste-black.png">caste equity</a>
   </div>
 </div>
 
-<h2 id="instructions">📷 Choose your photo 📷</h2>
-
+<h2 class="instructions">📷 Choose your photo 📷</h2>
 <input type="file" required />
+<p class="small">
+  Your photo never leaves your device: all image editing happens locally.
+</p>
 
-<canvas width=400 height=400></canvas>
+<canvas width="400" height="400"></canvas>
 
-<p><a id="export" class="button" download="avatar.png">Save</a></p>
-
-<p><small>(your image is not uploaded or saved by this webpage)</small></p>
+<p><a id="export-link" class="button" download="avatar.png">Save</a></p>
 
 <script src="script.js"></script>
