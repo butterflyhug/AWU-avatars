@@ -1,3 +1,6 @@
+const floorToEven = x => Math.floor(x / 2) * 2;
+const ceilToEven = x => Math.ceil(x / 2) * 2;
+
 (() => {
   const uploadedImage = new Image();
   uploadedImage.src = 'placeholder.svg';
@@ -12,11 +15,11 @@
     context.moveTo(0, 0);
     context.beginPath();
 
-    const innerToOuterRatio = +frameImage.dataset.innerToOuterRatio;
+    const innerToOuterRatio = Number(frameImage.dataset.innerToOuterRatio);
     const {width, height} = uploadedImage;
     const minDimension = Math.min(width, height);
 
-    const sizeUnclamped = Math.floor(minDimension / innerToOuterRatio / 2) * 2;
+    const sizeUnclamped = floorToEven(minDimension / innerToOuterRatio);
     // Try to set things up so the image in the middle retains its original
     // resolution. But don't let the frame resolution get too low, or the final
     // resolution get too large. (Firefox in particular doesn't downscale well,
@@ -25,8 +28,8 @@
     context.canvas.width = size;
     context.canvas.height = size;
 
-    const innerWidth  = (size / sizeUnclamped) * width;
-    const innerHeight = (size / sizeUnclamped) * height;
+    const innerWidth  = ceilToEven((size / sizeUnclamped) * width);
+    const innerHeight = ceilToEven((size / sizeUnclamped) * height);
     const center = size / 2;
 
     // Clip a few extra pixels off the edge so the uploaded image never bleeds
@@ -35,7 +38,7 @@
       context.save();
       {
         const kExtraClip = 2;
-        context.arc(size/2, size/2, size/2 - kExtraClip, 0, 2 * Math.PI);
+        context.arc(center, center, center - kExtraClip, 0, 2 * Math.PI);
         context.clip();
 
         context.imageSmoothingQuality = 'high';
